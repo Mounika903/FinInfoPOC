@@ -8,12 +8,12 @@ public class SharedPreferenceUtil {
 
     public static final String KEY_USER_LOGGED_IN_STATUS = "KEY_USER_LOGGED_IN_STATUS";
 
-    public static final Boolean getUserLoggedInStatus(Context context) {
+    public static Boolean getUserLoggedInStatus(Context context) {
         return getSharedPreferences(context)
                 .getBoolean(KEY_USER_LOGGED_IN_STATUS, false);
     }
 
-    public static final void setUserLoggedInStatus(Context context, Boolean loginStatus) {
+    public static void setUserLoggedInStatus(Context context, Boolean loginStatus) {
         getSharedPreferences(context).edit()
                 .putBoolean(KEY_USER_LOGGED_IN_STATUS, loginStatus)
                 .apply();

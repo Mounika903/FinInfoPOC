@@ -1,21 +1,15 @@
 package in.co.fininfocomapp;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
+
+import java.util.Objects;
 
 import in.co.fininfocomapp.utils.SharedPreferenceUtil;
 
@@ -24,7 +18,6 @@ public class LoginActivity extends AppCompatActivity {
 
     EditText et_username, et_password;
     Button btn_login;
-    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,14 +26,9 @@ public class LoginActivity extends AppCompatActivity {
 
         initViews();
 
-        mAuth = FirebaseAuth.getInstance();
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
 
-        btn_login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                validation();
-            }
-        });
+        btn_login.setOnClickListener(view -> validation());
 
     }
 
@@ -48,13 +36,13 @@ public class LoginActivity extends AppCompatActivity {
         String email = et_username.getText().toString();
         String password = et_password.getText().toString();
 
-        if (email.equals("") || email.equals(null)) {
+        if (Objects.equals(email, "")) {
             Toast.makeText(this, "Please enter email", Toast.LENGTH_SHORT).show();
         } else if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             Toast.makeText(this, "please enter valid email address", Toast.LENGTH_SHORT).show();
-        } else if (password.equals("") || password.equals(null)) {
+        } else if (password.equals("")) {
             Toast.makeText(getApplicationContext(), "Please enter password", Toast.LENGTH_SHORT).show();
-        } else if (password.length() > 7 || password.length() < 7) {
+        } else if (password.length() != 7) {
             Toast.makeText(getApplicationContext(), "Please enter seven characters password", Toast.LENGTH_SHORT).show();
         } else {
             loginUser(email, password);
