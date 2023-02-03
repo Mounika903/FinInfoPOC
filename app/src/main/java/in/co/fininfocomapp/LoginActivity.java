@@ -69,9 +69,9 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void initViews() {
-        et_username = (EditText) findViewById(R.id.user_name);
-        et_password = (EditText) findViewById(R.id.password);
-        btn_login = (Button) findViewById(R.id.btn_login);
+        et_username = findViewById(R.id.user_name);
+        et_password = findViewById(R.id.password);
+        btn_login =  findViewById(R.id.btn_login);
     }
 
     @Override

@@ -1,26 +1,29 @@
 package in.co.fininfocomapp;
 
+import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 public class ListItemAdapter extends RecyclerView.Adapter<ListItemAdapter.ViewHolder>{
-    private ArrayList<DataModal> listItems;
+    private final ArrayList<DataModal> listItems;
 
     public ListItemAdapter(ArrayList<DataModal> listItems) {
         this.listItems = listItems;
     }
 
+    @NonNull
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
         View listItem= layoutInflater.inflate(R.layout.item_view, parent, false);
-        ViewHolder viewHolder = new ViewHolder(listItem);
-        return viewHolder;
+        return new ViewHolder(listItem);
     }
 
 
@@ -30,7 +33,6 @@ public class ListItemAdapter extends RecyclerView.Adapter<ListItemAdapter.ViewHo
         holder.name.setText(myListData.getName());
         holder.age.setText(String.valueOf(myListData.getAge()));
         holder.city.setText(myListData.getCity());
-
     }
 
     @Override
@@ -45,9 +47,9 @@ public class ListItemAdapter extends RecyclerView.Adapter<ListItemAdapter.ViewHo
         public TextView city;
         public ViewHolder(View itemView) {
             super(itemView);
-            this.name = (TextView) itemView.findViewById(R.id.name);
-            this.age = (TextView) itemView.findViewById(R.id.age);
-            this.city = (TextView) itemView.findViewById(R.id.city);
+            this.name =  itemView.findViewById(R.id.name);
+            this.age =  itemView.findViewById(R.id.age);
+            this.city =  itemView.findViewById(R.id.city);
         }
     }
 }

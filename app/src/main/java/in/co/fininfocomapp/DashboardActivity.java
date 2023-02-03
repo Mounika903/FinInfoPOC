@@ -37,11 +37,12 @@ public class DashboardActivity extends AppCompatActivity {
         arrayList.add(new DataModal("Jack", 1, "Delhi"));
         arrayList.add(new DataModal("Harry", 2, "Chennai"));
 
-        recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+      recyclerView =  findViewById(R.id.recyclerView);
         listItemAdapter = new ListItemAdapter(arrayList);
         recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         recyclerView.setAdapter(listItemAdapter);
+        listItemAdapter.notifyDataSetChanged();
     }
 
     @Override
